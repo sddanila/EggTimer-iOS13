@@ -10,6 +10,7 @@ import UIKit
 
 class ViewController: UIViewController {
     @IBOutlet weak var eggLabel: UILabel!
+    @IBOutlet weak var eggProgress: UIProgressView!
     
     let eggTimes : [String : Int] = ["Soft": 5, "Medium": 7, "Hard": 12]
     
@@ -23,14 +24,17 @@ class ViewController: UIViewController {
     
     var secondsRemaining = 60
     var timer = Timer()
+    var originalTime = 0
     
     @IBAction func hardnessSelected(_ sender: UIButton) {
         let hardness = sender.currentTitle!
         self.eggLabel.text = "How do you like your eggs?"
+        self.eggProgress.progress = 0
         
         timer.invalidate()
         
         secondsRemaining = eggTimes[hardness]!
+        originalTime = eggTimes[hardness]!
         
         startTimer(secondsRemaining: self.secondsRemaining)
     }
@@ -39,10 +43,13 @@ class ViewController: UIViewController {
         timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { (Timer) in
             if self.secondsRemaining > 0 {
                 print ("\(String(describing: self.secondsRemaining)) seconds")
+                self.eggProgress.progress = 1 -  Float(self.secondsRemaining) / Float(self.originalTime)
+                print(self.eggProgress.progress)
                 self.secondsRemaining -= 1
             } else {
                 self.timer.invalidate()
                 self.eggLabel.text = "Done!"
+                self.eggProgress.progress = 1.0
             }
         }
     }

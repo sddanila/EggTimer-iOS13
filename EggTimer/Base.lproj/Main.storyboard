@@ -120,6 +120,21 @@
                                     </stackView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nJN-th-c5K" userLabel="Timer View">
                                         <rect key="frame" x="0.0" y="571.5" width="374" height="246.5"/>
+                                        <subviews>
+                                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progressViewStyle="bar" translatesAutoresizingMaskIntoConstraints="NO" id="bMx-Kn-rWe">
+                                                <rect key="frame" x="0.0" y="120.5" width="374" height="6"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="5" id="ygv-ql-CFl"/>
+                                                </constraints>
+                                                <color key="progressTintColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="trackTintColor" systemColor="systemGrayColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </progressView>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="bMx-Kn-rWe" firstAttribute="leading" secondItem="nJN-th-c5K" secondAttribute="leading" id="Y0U-5M-agy"/>
+                                            <constraint firstItem="bMx-Kn-rWe" firstAttribute="centerY" secondItem="nJN-th-c5K" secondAttribute="centerY" id="Ye7-1v-iV5"/>
+                                            <constraint firstAttribute="trailing" secondItem="bMx-Kn-rWe" secondAttribute="trailing" id="xHz-7P-Vir"/>
+                                        </constraints>
                                     </view>
                                 </subviews>
                             </stackView>
@@ -135,6 +150,7 @@
                     </view>
                     <connections>
                         <outlet property="eggLabel" destination="XLm-5r-pSP" id="jf2-ND-SLF"/>
+                        <outlet property="eggProgress" destination="bMx-Kn-rWe" id="Kf2-Vi-rFg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
