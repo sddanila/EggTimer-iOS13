@@ -21,7 +21,7 @@ class ViewController: UIViewController {
     let mediumTime : Int = 4
     let hardTime : Int = 7
     
-    var secondsRemaining : Int? = 0
+    var secondsRemaining = 60
     var timer = Timer()
     
     @IBAction func hardnessSelected(_ sender: UIButton) {
@@ -32,16 +32,16 @@ class ViewController: UIViewController {
         
         secondsRemaining = eggTimes[hardness]!
         
-        startTimer(secondsRemaining: self.secondsRemaining ?? 0)
+        startTimer(secondsRemaining: self.secondsRemaining)
     }
     
     func startTimer(secondsRemaining : Int) {
         timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { (Timer) in
-            if self.secondsRemaining! > 0 {
+            if self.secondsRemaining > 0 {
                 print ("\(String(describing: self.secondsRemaining)) seconds")
-                self.secondsRemaining! -= 1
+                self.secondsRemaining -= 1
             } else {
-                timer.invalidate()
+                self.timer.invalidate()
                 self.eggLabel.text = "Done!"
             }
         }
