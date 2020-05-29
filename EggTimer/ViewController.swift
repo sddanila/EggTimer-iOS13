@@ -16,15 +16,6 @@ class ViewController: UIViewController {
     var player : AVAudioPlayer!
     
     let eggTimes : [String : Int] = ["Soft": 5, "Medium": 7, "Hard": 12]
-    
-//    let softTime : Int = 300
-//    let mediumTime : Int = 420
-//    let hardTime : Int = 720
-    
-    let softTime : Int = 3
-    let mediumTime : Int = 4
-    let hardTime : Int = 7
-    
     var secondsRemaining = 60
     var timer = Timer()
     var originalTime = 0
@@ -34,8 +25,8 @@ class ViewController: UIViewController {
         self.eggLabel.text = hardness
         self.eggProgress.progress = 0
         timer.invalidate()
-        secondsRemaining = eggTimes[hardness]!
-        originalTime = eggTimes[hardness]!
+        secondsRemaining = eggTimes[hardness]! * 60
+        originalTime = eggTimes[hardness]! * 60
         
         startTimer(secondsRemaining: self.secondsRemaining)
     }
@@ -43,9 +34,7 @@ class ViewController: UIViewController {
     func startTimer(secondsRemaining : Int) {
         timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { (Timer) in
             if self.secondsRemaining > 0 {
-                print ("\(String(describing: self.secondsRemaining)) seconds")
                 self.eggProgress.progress = 1 -  Float(self.secondsRemaining) / Float(self.originalTime)
-                print(self.eggProgress.progress)
                 self.secondsRemaining -= 1
             } else {
                 self.timer.invalidate()
